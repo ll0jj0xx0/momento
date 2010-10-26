@@ -1,0 +1,20 @@
+application: memo-life
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /css
+  static_dir: templates/css
+
+- url: /images
+  static_dir: templates/images
+  
+- url: /javascript
+  static_dir: templates/javascript
+  
+- url: /icons
+  static_dir: templates/icons
+    
+- url: .*
+  script: main.py

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block leftnav %}<a href="/">Back</a>{% endblock %}
+{% block title %}Situation{% endblock %}
+
+
+{% block content %}
+    <ul class="pageitem">
+    		<li class="textbox"><span class="header">Your State:</span> 
+    		{% for situation in situations %} {{situation}}, {% endfor %}  
+    		</li>
+    </ul>
+    <ul class="pageitem">
+        <li class="textbox">
+          {% if result %}
+            <span class="header">One of the suggestions: </span>
+            {{ result.comment }}
+          {% else %}
+            no suggestions found. You should try add one.
+          {% endif %}
+        </li>
+    </ul>
+    
+    <div id="place_holder" style="height:50px;">
+    </div>
+    
+    <ul class="pageitem">
+      {% if result %}
+      <form action="/search_result" name="search_again" method="post">
+			<li class="button">			    
+        <input name="more_sug" type="submit" value="More Suggestions">
+      </li>
+      		  <input name="situations" value="{% for situation in situations %}{{situation}}.{% endfor %}" type="hidden" ></input>
+      </form>
+      {% else %}
+      <form name="add_entry" action="/add_entry" method="get">
+			<li class="button">			    
+        <input name="create_entry" type="submit" value="Create Suggestion ...">
+      </li>
+      	<input name="situations" value="{% for situation in situations %}{{situation}}.{% endfor %}" type="hidden"></input>
+      </form>
+      {% endif %}
+    </ul>
+    
+    <ul class="pageitem">
+      <li class="menu">
+        <a href="/flag?entry={{result.key}}"><span class="name" style="padding-left:60px">Flag As Inappropriate</span></a>
+      </li>
+    </ul>
+    
+{% endblock %}

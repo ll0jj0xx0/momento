@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Sign in
+{% endblock %}
+
+{% block leftnav %}
+<a href="/">Cancel</a>
+{% endblock %}
+
+
+{% block content %}
+{% if error %}
+  <ul class="pageitem">
+    <li class="textbox">{{ error }}</li>
+  </ul>
+{% endif %}
+<form action="/sign_in" method="post">
+<ul class="pageitem">
+  <li class="bigfield"><input placeholder="Email" name="email" type="text"></li>
+  <li class="bigfield"><input placeholder="Password" name="password" type="password"></li>
+	<li class="button">
+    <input name="Submit input" type="submit" value="Sign In"></li>
+</ul>
+</form>
+<ul class="pageitem">
+  <li class="menu"><a href="/register"><span class="name">register a new user</span><span class="arrow"></span></a></li>
+</ul>
+{% endblock %}

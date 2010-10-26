@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block leftnav %}<a href="/">Cancel</a>{% endblock %}
+{% block title %}Add New Entry{% endblock %}
+
+
+{% block content %}
+  <form target="/add_entry" method="post">
+  <ul class="pageitem">
+    <li class="bigfield"><input placeholder="Situation" name="situations" type="text" value="{% if situations %}{{ situations }}{% endif %}"></li>
+  			<li class="textbox"><textarea name="comment" rows="4" placeholder="comment"></textarea></li>
+  			<li class="button">
+        			<input name="Submit input" type="submit" value="Save Entry"></li>
+  </ul>
+  </form>
+  <ul class="pageitem">
+    <li class="textbox">
+      <span class="header">Note: </span>
+      Please add suggestions that is constructive and generally leads to a better outcome. Any inappropriate suggestions will be deleted. 
+    </li>
+  </ul>
+{% endblock %}

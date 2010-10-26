@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block leftnav %}
+<a href="/sign_in">Cancel</a>
+{% endblock %}
+
+{% block content %}
+<form action="/register" method="post">
+{% if filled.error %}
+  <ul class="pageitem">
+    <li class="textbox">{{ filled.error }}</li>
+  </ul>
+{% endif %}
+<ul class="pageitem">
+  <li class="bigfield"><input placeholder="Username" name="username" type="text" value="{{filled.username}}"></li>
+  <li class="bigfield"><input placeholder="Your Email" name="email" type="text" value="{{filled.email}}"></li>
+  <li class="bigfield"><input placeholder="Password" name="password_1" type="password"></li>
+  <li class="bigfield"><input placeholder="Password Again" name="password_2" type="password"></li>
+	<li class="button">
+  <input name="Submit input" type="submit" value="Sign In"></li>
+</ul>
+</form>
+{% endblock %}

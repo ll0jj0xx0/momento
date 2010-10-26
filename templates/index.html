@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+<!-- <div class="searchbox">
+  <form action="/search_result" method="post">
+    <fieldset><input id="search" name="situations" placeholder="search for situations" type="text">
+    <input id="submit" type="hidden"></fieldset>
+  </form>
+</div> -->
+
+{% block script %}
+  if (!window.navigator.standalone){
+    setTimeout(function () {
+      window.scrollTo(0, 1);
+      // document.getElementById("home_screen_prompt").style.visibility = 'hidden';
+    }, 1000);
+  }
+{% endblock %}
+
+{% block content %}
+  <span class="graytitle">{% if muser %}Hello, {{muser.username}}. {% endif %}Search for you situation.</span>
+  <form action="/search_result" method="post">
+  <ul class="pageitem">
+    <li class="bigfield">
+  		<input id="search" name="situations" placeholder="seperate by . " type="text">
+  	</li>
+  	<li class="button">
+      <input name="Submit input" type="submit" value="Search">
+  		<input id="submit" type="hidden">
+  	</li>
+  	</form>
+
+  </ul>
+  <div id="sample_search" style="margin-left:20px;text-shadow:1px 1px #fff">
+    sample search terms: tired. morning. hungry.
+  </div>
+  <div id="place_holder" style="height:80px;">
+  </div>
+  
+  <ul class="pageitem">
+    <!-- <li class="menu"><a href="/add_entry">
+      <span class="name">Add New Entry</span><span class="arrow"></span></a>
+    </li> -->
+    <li class="menu">
+      {% if not muser %}
+      <a href="/sign_in">
+      <span class="name" style="padding-left:110px">Sign in</span><span class="arrow"></span></a>
+      {% else %}
+      <a href="/add_entry">
+        <span class="name" style="padding-left:80px">Add New Entry</span><span class="arrow"></span></a>
+      {% endif %}
+    </li>
+  </ul>
+  <ul class="pageitem">
+    <li class="menu"><a href="/what_is_this">
+      <span class="name" style="padding-left:40px">What is this app about?</span><span class="arrow"></span></a>
+    </li>
+  	</ul>
+{% endblock %}
+
+{% block prompt %}
+  <div id="home_screen_prompt">
+    
+  </div>
+  <script type="text/javascript">
+    if (!window.navigator.standalone){
+      // document.getElementById("home_screen_prompt").style.visibility = 'hidden';
+      document.getElementById("home_screen_prompt").innerHTML = '<img src="/icons/add_to_home_screen.png" />'
+    }
+  </script>
+{% endblock %}
